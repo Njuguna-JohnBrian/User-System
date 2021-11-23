@@ -5,11 +5,11 @@ const db = require("./models/");
 
 const app = express();
 
-let corstOptions = {
-  origin: "http://localhost:8000",
+let corsOptions = {
+  origin: "http://localhost:8081",
 };
 
-app.use(cors(corstOptions));
+app.use(cors(corsOptions));
 
 //parse json content-type requests
 app.use(bodyParser.json());
@@ -47,8 +47,8 @@ app.get("/", (req, res) => {
 require("./routes/auth.routes")(app);
 require("./routes/user.routes")(app);
 
-const PORT = process.env.PORT || 8000;
-
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-  console.log(`Server Running On Port ${PORT}`);
+  console.log(`Server is running on port ${PORT}.`);
 });
